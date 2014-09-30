@@ -22,6 +22,10 @@ public class Trip {
         this.endTime = endTime;
     }
 
+    public Trip(){
+
+    }
+
     public String getUuid() {
         return uuid;
     }
@@ -76,5 +80,18 @@ public class Trip {
 
     public void setEndTime(int endTime) {
         this.endTime = endTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Trip{" +
+                "uuid='" + uuid + '\'' +
+                ", requestTime=" + requestTime +
+                ", productId='" + productId + '\'' +
+                ", status=" + status +
+                ", distance=" + distance +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                '}';
     }
 }

@@ -14,9 +14,9 @@ public interface RuberService {
 
     public History getHistory(int offset, int limit);
 
-    public void signup(User user);
+    public void signup(User user) throws ServiceException;
 
     public List<User> getUsers();
 
-    public User getUser();
+    public User getUser(String userName);
 }
