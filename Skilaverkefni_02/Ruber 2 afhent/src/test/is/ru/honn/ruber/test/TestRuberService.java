@@ -12,32 +12,29 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.logging.Logger;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:app.xml")
-public class TestRuberService extends TestCase
-{
+@ContextConfiguration("classpath:app-test-stub.xml")
+public class TestRuberService extends TestCase {
 
-  Logger log = Logger.getLogger(TestRuberService.class.getName());
+    Logger log = Logger.getLogger(TestRuberService.class.getName());
 
-  @Autowired
-  private RuberService service;
+    @Autowired
+    private RuberService service;
 
-  @Before
-  public void setUp() throws Exception
-  {
+    @Before
+    public void setUp() throws Exception {
 
-  }
+    }
 
-  @Test
-  public void testUser()
-  {
-    log.info("testUser");
-    fail();
-  }
+    @Test
+    public void testUser() {
+        log.info("testUser");
+        fail();
 
-  @Test
-  public void testActivity()
-  {
-    log.info("testActivity");
-    fail();
-  }
+    }
+
+    @Test
+    public void testActivity() {
+        log.info("testActivity");
+        fail();
+    }
 }
