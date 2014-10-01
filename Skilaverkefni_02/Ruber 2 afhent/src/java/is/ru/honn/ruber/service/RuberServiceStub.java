@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RuberServiceStub extends RuObject implements RuberService {
-    protected List<History> histories;
+    protected List<Trip> trips = new ArrayList<Trip>();
+    protected List<User> users = new ArrayList<User>();
 
     @Override
     public List getProducts(double latitude, double longitude) throws ServiceException {
@@ -56,7 +57,7 @@ public class RuberServiceStub extends RuObject implements RuberService {
 
     @Override
     public void addTrips(Trip trip) {
-
+        trips.add(trip);
     }
 
     @Override
@@ -64,21 +65,33 @@ public class RuberServiceStub extends RuObject implements RuberService {
         if (limit > 100) {
             limit = 100;
         }
+
+
+
         return null;
     }
 
     @Override
-    public void signup(User user) {
-
+    public void signup(User user) throws ServiceException{
+        User oldUser = getUser(user.getUsername());
+        if(oldUser != null){
+            throw new ServiceException("Duplicate user exists");
+        }
+        users.add(user);
     }
 
     @Override
     public List<User> getUsers() {
-        return null;
+        return users;
     }
 
     @Override
-    public User getUser() {
+    public User getUser(String userName) {
+        for(User u : users){
+            if( u.getUsername().equals(userName)){
+                return u;
+            }
+        }
         return null;
     }
 }

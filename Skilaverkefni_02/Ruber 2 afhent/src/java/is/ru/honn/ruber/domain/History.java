@@ -50,7 +50,7 @@ public class History {
         this.history = history;
     }
 
-    public void addTripStatus(TripStatus status){
+    public void addTripStatus(TripStatus status) {
         this.history.add(status);
     }
 }
