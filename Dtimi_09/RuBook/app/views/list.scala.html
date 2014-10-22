@@ -1,0 +1,14 @@
+@(users: List[models.book.data.UserDTO])
+
+<h1>Users</h1>
+
+<table>
+  @for(user <- users) {
+    <tr>
+      <td>@user.getId</td>
+      <td>@user.getName</td>
+      <td>@user.getUserName</td>
+      <td>@user.getEmail</td>
+    </tr>
+  }
+</table>
