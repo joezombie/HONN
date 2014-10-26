@@ -54,7 +54,8 @@ public class TripReader
         JSONObject jsonTrip = (JSONObject)jsonHistory.get(i);
         Trip trip = new Trip();
 
-        trip.setId(Integer.parseInt(jsonTrip.get("uuid").toString()));
+        trip.setRiderId(Integer.parseInt(jsonTrip.get("uuid").toString()));
+        trip.setDriverId(1);
         trip.setProductId(Integer.parseInt(jsonTrip.get("product_id").toString()));
         trip.setStatus(TripStatus.COMPLETED);
         trip.setDistance((Double)jsonTrip.get("distance"));

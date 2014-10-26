@@ -20,12 +20,12 @@
         </property>
     </bean>
 
-    <bean id="userDataGateway" class="is.ru.honn.ruber.users.data.UserData">
+    <bean id="ridesDataGateway" class="is.ru.honn.ruber.rides.data.RidesData">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="userService" class="is.ru.honn.ruber.rides.RidesService" >
-        <constructor-arg index="0" ref="userDataGateway"/>
+    <bean id="ridesService" class="is.ru.honn.ruber.rides.service.RidesServiceData" >
+        <constructor-arg index="0" ref="ridesDataGateway"/>
     </bean>
 
 

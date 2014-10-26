@@ -1,7 +1,7 @@
 package is.ru.honn.ruber.process;
 
 import is.ru.honn.ruber.domain.Trip;
-import is.ru.honn.ruber.rides.RidesService;
+import is.ru.honn.ruber.rides.service.RidesService;
 import is.ruframework.process.RuAbstractProcess;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -20,7 +20,7 @@ public class TripImportProcess extends RuAbstractProcess implements TripHandler
   public void beforeProcess()
   {
     ApplicationContext appCtx = new FileSystemXmlApplicationContext("RidesService.xml");
-    ridesService = (RidesService)appCtx.getBean("RidesService");
+    ridesService = (RidesService)appCtx.getBean("ridesService");
     reader.setHandler(this);
   }
 
@@ -35,7 +35,7 @@ public class TripImportProcess extends RuAbstractProcess implements TripHandler
     catch (ProcessException e)
     {
       String message = "Error reading importfile";
-      log.severe(message);
+      log.severe(message + " " + e.getMessage() );
       System.exit(0);
     }
   }
