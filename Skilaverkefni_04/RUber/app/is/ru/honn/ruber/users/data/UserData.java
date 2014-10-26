@@ -63,4 +63,22 @@ public class UserData extends RuData implements UserDataGateway
     }
     return user;
   }
+
+    public User getUserById(Integer id)
+    {
+        Collection<String> users;
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+
+        User user;
+        try
+        {
+            user = (User)jdbcTemplate.queryForObject(
+                    "select * from ru_users where id = '" + id.toString() + "'", new UserRowMapper());
+        }
+        catch (EmptyResultDataAccessException erdaex)
+        {
+            throw new UserNotFoundException("No user found with id: " + id.toString());
+        }
+        return user;
+    }
 }

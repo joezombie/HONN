@@ -11,5 +11,6 @@ public interface UserService
       throws UsernameExistsException;
 
   public User getUser(String username) throws UserNotFoundException;
+  public User getUser(Integer id) throws UserNotFoundException;
 
 }

@@ -9,5 +9,5 @@ import is.ruframework.data.RuDataAccess;
  */
 public interface DriverDataGateway extends RuDataAccess {
     public int addDriver(Driver driver);
-    public Driver getDriverById(int id);
+    public Driver getDriverById(Integer id);
 }

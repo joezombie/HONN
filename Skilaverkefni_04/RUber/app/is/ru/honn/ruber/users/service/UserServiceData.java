@@ -39,4 +39,15 @@ public class UserServiceData implements UserService
     return user;
   }
 
+    @Override
+    public User getUser(Integer id) throws UserNotFoundException
+    {
+        User user = userDataGateway.getUserById(id);
+        if (user == null)
+        {
+            throw new UserNotFoundException("No user found with id: " + id.toString());
+        }
+        return user;
+    }
+
 }
