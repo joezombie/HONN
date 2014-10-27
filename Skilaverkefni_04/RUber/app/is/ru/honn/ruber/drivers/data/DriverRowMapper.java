@@ -1,11 +1,8 @@
-package is.ru.honn.ruber.users.data;
+package is.ru.honn.ruber.drivers.data;
 
 import is.ru.honn.ruber.domain.Driver;
-import is.ru.honn.ruber.domain.User;
 import is.ru.honn.ruber.users.service.UserService;
-import is.ru.honn.ruber.users.service.UserServiceData;
 import org.springframework.jdbc.core.RowMapper;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -14,7 +11,11 @@ import java.sql.SQLException;
  */
 public class DriverRowMapper implements RowMapper<Driver>
 {
-    UserService userService = new UserServiceData(new UserData());
+    UserService userService;
+
+    public DriverRowMapper(UserService userService){
+        this.userService = userService;
+    }
 
     public Driver mapRow(ResultSet rs, int rowNum) throws SQLException
     {

@@ -1,4 +1,4 @@
-package is.ru.honn.ruber.users.data;
+package is.ru.honn.ruber.drivers.data;
 
 import is.ru.honn.ruber.domain.Driver;
 import is.ruframework.data.RuData;

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Data Source -->
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName">
+            <value>net.sourceforge.jtds.jdbc.Driver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:jtds:sqlserver://hrnem.ru.is:1433</value>
+        </property>
+        <property name="username">
+            <value>hshjohannesh10</value>
+        </property>
+        <property name="password">
+            <value>jvg4pcz2</value>
+        </property>
+    </bean>
+
+    <bean id="userDataGateway" class="is.ru.honn.ruber.users.data.UserData">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="userService" class="is.ru.honn.ruber.users.service.UserServiceData" >
+        <constructor-arg index="0" ref="userDataGateway"/>
+    </bean>
+
+    <bean id="driverRowMapper" class="is.ru.honn.ruber.drivers.data.DriverRowMapper">
+        <constructor-arg index="0" ref="userService"/>
+    </bean>
+
+    <bean id="driverDataGateway" class="is.ru.honn.ruber.drivers.data.DriverData">
+        <constructor-arg index="0" ref="driverRowMapper"/>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="driverService" class="is.ru.honn.ruber.drivers.service.DriverServiceData" >
+        <constructor-arg index="0" ref="driverDataGateway"/>
+    </bean>
+
+
+</beans>

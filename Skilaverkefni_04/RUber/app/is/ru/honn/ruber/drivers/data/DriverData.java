@@ -1,17 +1,15 @@
-package is.ru.honn.ruber.users.data;
+package is.ru.honn.ruber.drivers.data;
 
 import is.ru.honn.ruber.domain.Driver;
-import is.ru.honn.ruber.domain.User;
-import is.ru.honn.ruber.users.service.UserNotFoundException;
-import is.ru.honn.ruber.users.service.UsernameExistsException;
+import is.ru.honn.ruber.drivers.service.DriverExistsException;
+import is.ru.honn.ruber.drivers.service.DriverNotFoundException;
+import org.springframework.jdbc.core.RowMapper;
 import is.ruframework.data.RuData;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
-
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +17,12 @@ import java.util.Map;
  * Created by Johannes Gunnar Heidarsson on 25.10.2014.
  */
 public class DriverData extends RuData implements DriverDataGateway {
+    private RowMapper<Driver> rowMapper;
+
+    public DriverData(RowMapper<Driver> rowMapper){
+        this.rowMapper = rowMapper;
+    }
+
     @Override
     public int addDriver(Driver driver) {
         SimpleJdbcInsert insert =
@@ -37,7 +41,7 @@ public class DriverData extends RuData implements DriverDataGateway {
         }
         catch(DataIntegrityViolationException divex)
         {
-            throw new UsernameExistsException("User " + driver.getUser().getUsername() + " is already a driver", divex);
+            throw new DriverExistsException("User " + driver.getUser().getUsername() + " is already a driver", divex);
         }
 
         driver.setId(returnKey);
@@ -53,11 +57,11 @@ public class DriverData extends RuData implements DriverDataGateway {
         try
         {
             driver = (Driver)jdbcTemplate.queryForObject(
-                    "select * from ru_drivers where id = '" + id.toString() + "'", new DriverRowMapper());
+                    "select * from ru_drivers where id = '" + id.toString() + "'", rowMapper);
         }
         catch (EmptyResultDataAccessException erdaex)
         {
-            throw new UserNotFoundException("No user found with id: " + id.toString());
+            throw new DriverNotFoundException("No driver found with id: " + id.toString());
         }
         return driver;
     }
