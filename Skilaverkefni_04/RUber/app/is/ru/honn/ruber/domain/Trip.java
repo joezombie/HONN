@@ -3,6 +3,8 @@ package is.ru.honn.ruber.domain;
 public class Trip
 {
   protected int id;
+  protected int driverId;
+  protected int riderId;
   protected long requestTime;
   protected int productId;
   protected TripStatus status;
@@ -36,7 +38,30 @@ public class Trip
     this.endTime = endTime;
   }
 
-  public int getId()
+    public Trip(int driverId, int riderId, long requestTime, int productId, TripStatus status, double distance, long startTime, long endTime) {
+        this.driverId = driverId;
+        this.riderId = riderId;
+        this.requestTime = requestTime;
+        this.productId = productId;
+        this.status = status;
+        this.distance = distance;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    public Trip(int id, int driverId, int riderId, long requestTime, int productId, TripStatus status, double distance, long startTime, long endTime) {
+        this.id = id;
+        this.driverId = driverId;
+        this.riderId = riderId;
+        this.requestTime = requestTime;
+        this.productId = productId;
+        this.status = status;
+        this.distance = distance;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    public int getId()
   {
     return id;
   }
@@ -106,17 +131,34 @@ public class Trip
     this.endTime = endTime;
   }
 
-  @Override
-  public String toString()
-  {
-    return "Trip{" +
-        "id=" + id +
-        ", requestTime=" + requestTime +
-        ", productId=" + productId +
-        ", status=" + status +
-        ", distance=" + distance +
-        ", startTime=" + startTime +
-        ", endTime=" + endTime +
-        '}';
-  }
+    public int getDriverId() {
+        return driverId;
+    }
+
+    public void setDriverId(int driverId) {
+        this.driverId = driverId;
+    }
+
+    public int getRiderId() {
+        return riderId;
+    }
+
+    public void setRiderId(int riderId) {
+        this.riderId = riderId;
+    }
+
+    @Override
+    public String toString() {
+        return "Trip{" +
+                "id=" + id +
+                ", driverId=" + driverId +
+                ", riderId=" + riderId +
+                ", requestTime=" + requestTime +
+                ", productId=" + productId +
+                ", status=" + status +
+                ", distance=" + distance +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                '}';
+    }
 }
