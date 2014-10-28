@@ -1,8 +1,11 @@
 package is.ru.honn.ruber.drivers.data;
 
 import is.ru.honn.ruber.domain.Driver;
+import is.ru.honn.ruber.domain.Trip;
 import is.ru.honn.ruber.drivers.service.DriverExistsException;
 import is.ru.honn.ruber.drivers.service.DriverNotFoundException;
+import is.ru.honn.ruber.rides.service.TripNotFoundException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import is.ruframework.data.RuData;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -11,6 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,7 +35,7 @@ public class DriverData extends RuData implements DriverDataGateway {
                         .usingGeneratedKeyColumns("id");
 
         Map<String, Object> parameters = new HashMap<String, Object>(1);
-        parameters.put("userId", driver.getUser().getId());
+        parameters.put("userId", driver.getUserId());
 
         int returnKey;
 
@@ -41,7 +45,7 @@ public class DriverData extends RuData implements DriverDataGateway {
         }
         catch(DataIntegrityViolationException divex)
         {
-            throw new DriverExistsException("User " + driver.getUser().getUsername() + " is already a driver", divex);
+            throw new DriverExistsException("User " + driver.getUserId() + " is already a driver", divex);
         }
 
         driver.setId(returnKey);
@@ -50,7 +54,6 @@ public class DriverData extends RuData implements DriverDataGateway {
 
     @Override
     public Driver getDriverById(Integer id) {
-        Collection<String> drivers;
         JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
 
         Driver driver;
@@ -64,5 +67,21 @@ public class DriverData extends RuData implements DriverDataGateway {
             throw new DriverNotFoundException("No driver found with id: " + id.toString());
         }
         return driver;
+    }
+
+    @Override
+    public List<Driver> getAllDrivers() {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+
+        List<Driver> drivers;
+        try
+        {
+            drivers = jdbcTemplate.query("select * from ru_drivers", new BeanPropertyRowMapper<Driver>(Driver.class));
+        }
+        catch (EmptyResultDataAccessException erdaex)
+        {
+            throw new DriverNotFoundException("No drivers found");
+        }
+        return drivers;
     }
 }

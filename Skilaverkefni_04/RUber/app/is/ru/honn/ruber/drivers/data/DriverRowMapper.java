@@ -11,17 +11,12 @@ import java.sql.SQLException;
  */
 public class DriverRowMapper implements RowMapper<Driver>
 {
-    UserService userService;
-
-    public DriverRowMapper(UserService userService){
-        this.userService = userService;
-    }
 
     public Driver mapRow(ResultSet rs, int rowNum) throws SQLException
     {
         return  new Driver(
                 rs.getInt(1),      // id
-                userService.getUser(rs.getInt(2))   // user id
+                rs.getInt(2)   // user id
         );
     }
 }

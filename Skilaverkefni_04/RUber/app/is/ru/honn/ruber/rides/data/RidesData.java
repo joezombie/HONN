@@ -1,8 +1,6 @@
 package is.ru.honn.ruber.rides.data;
 
 import is.ru.honn.ruber.domain.Trip;
-import is.ru.honn.ruber.domain.User;
-import is.ru.honn.ruber.process.ProcessException;
 import is.ru.honn.ruber.rides.service.TripExistsException;
 import is.ru.honn.ruber.rides.service.TripNotFoundException;
 import is.ruframework.data.RuData;

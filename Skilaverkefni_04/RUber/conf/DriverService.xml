@@ -20,16 +20,7 @@
         </property>
     </bean>
 
-    <bean id="userDataGateway" class="is.ru.honn.ruber.users.data.UserData">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
-
-    <bean id="userService" class="is.ru.honn.ruber.users.service.UserServiceData" >
-        <constructor-arg index="0" ref="userDataGateway"/>
-    </bean>
-
     <bean id="driverRowMapper" class="is.ru.honn.ruber.drivers.data.DriverRowMapper">
-        <constructor-arg index="0" ref="userService"/>
     </bean>
 
     <bean id="driverDataGateway" class="is.ru.honn.ruber.drivers.data.DriverData">

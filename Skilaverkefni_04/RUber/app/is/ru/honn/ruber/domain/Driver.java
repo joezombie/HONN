@@ -5,24 +5,30 @@ package is.ru.honn.ruber.domain;
  */
 public class Driver {
     private int id;
-    private User user;
+    private int userId;
 
-    public Driver(int id, User user){
-        this.id = id;
-        this.user = user;
+    public Driver(int userId) {
+        this.userId = userId;
     }
 
-    public Driver(User user){
-        this.user = user;
+    public Driver(int id, int userId) {
+        this.id = id;
+        this.userId = userId;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
