@@ -1,0 +1,20 @@
+@(driverList: java.util.List[is.ru.honn.ruber.domain.DriverDTO])
+
+@main(title = "Drivers", nav = "drivers") {
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Driver</th>
+        <th>Car</th>
+      </tr>
+    </thead>
+    <tbody>
+    @for(d <- driverList){
+      <tr>
+        <td><a href="/driver/@d.getId">@d.getFullName</a></td>
+        <td>@d.getProduct.getDisplayName</td>
+      </tr>
+    }
+    </tbody>
+  </table>
+}

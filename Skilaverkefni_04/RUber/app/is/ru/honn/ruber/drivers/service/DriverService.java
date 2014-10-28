@@ -1,6 +1,8 @@
 package is.ru.honn.ruber.drivers.service;
 
 import is.ru.honn.ruber.domain.Driver;
+import is.ru.honn.ruber.domain.DriverRating;
+import is.ru.honn.ruber.domain.Product;
 
 import java.util.List;
 
@@ -10,4 +12,7 @@ import java.util.List;
 public interface DriverService {
     public List<Driver> getAllDrivers();
     public Driver getDriverById(Integer id);
+    public Product getProductById(Integer id);
+    public List<DriverRating> getRatingForDriver(Integer id);
+    public DriverRating addRating(DriverRating rating);
 }

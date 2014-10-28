@@ -20,7 +20,7 @@ public class TripRowMapper implements RowMapper<Trip> {
                 rs.getInt(3), // driver Id
                 rs.getLong(4), // request time
                 rs.getInt(5), // product Id
-                TripStatus.COMPLETED, // trip status
+                TripStatus.valueOf(rs.getString(6)), // trip status
                 rs.getDouble(7), // distance
                 rs.getLong(8), // start time
                 rs.getLong(9) // end time

@@ -1,0 +1,30 @@
+@(tripList: java.util.List[is.ru.honn.ruber.domain.TripDTO])
+
+@main(title = "Trips", nav = "trips") {
+  <script src="@routes.Assets.at("javascripts/trips.js")" type="text/javascript"></script>
+  <script>
+    var trips=@tripList;
+    console.log(trips);
+  </script>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Trip length (Km)</th>
+        <th>Trip Time</th>
+        <th>Driver</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(t <- tripList){
+        <tr>
+          <td>@t.getDate()</td>
+          <td>@t.getDistance()</td>
+          <td>@t.getTimeString()</td>
+          <td><a href="/driver/@t.getDriverId()"/>@t.getDriverId()</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}

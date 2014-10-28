@@ -15,8 +15,10 @@ public class DriverRowMapper implements RowMapper<Driver>
     public Driver mapRow(ResultSet rs, int rowNum) throws SQLException
     {
         return  new Driver(
-                rs.getInt(1),      // id
-                rs.getInt(2)   // user id
+                rs.getInt(1),       // id
+                rs.getInt(2),       // user id
+                rs.getInt(3),       // product id
+                rs.getString(4)     // full name
         );
     }
 }

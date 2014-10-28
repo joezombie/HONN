@@ -1,7 +1,7 @@
 package controllers;
 
+import is.ru.honn.ruber.drivers.service.DriverNotFoundException;
 import is.ru.honn.ruber.drivers.service.DriverService;
-import is.ru.honn.ruber.users.service.UserService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import play.libs.Json;
@@ -20,6 +20,10 @@ public class DriverApi extends Controller {
     }
 
     public static Result getDriverById(int id){
-        return ok(Json.toJson(service.getDriverById(id)));
+        try {
+            return ok(Json.toJson(service.getDriverById(id)));
+        } catch(DriverNotFoundException e){
+            return notFound("Driver not found");
+        }
     }
 }

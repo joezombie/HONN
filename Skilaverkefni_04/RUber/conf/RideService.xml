@@ -2,7 +2,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
     <!-- Data Source -->
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -20,16 +19,11 @@
         </property>
     </bean>
 
-    <bean id="driverRowMapper" class="is.ru.honn.ruber.drivers.data.DriverRowMapper">
-    </bean>
-
-    <bean id="driverDataGateway" class="is.ru.honn.ruber.drivers.data.DriverData">
+    <bean id="ridesDataGateway" class="is.ru.honn.ruber.rides.data.RidesData">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="driverService" class="is.ru.honn.ruber.drivers.service.DriverServiceData" >
-        <constructor-arg index="0" ref="driverDataGateway"/>
+    <bean id="rideService" class="is.ru.honn.ruber.rides.service.RidesServiceData" >
+        <constructor-arg index="0" ref="ridesDataGateway"/>
     </bean>
-
-
 </beans>
