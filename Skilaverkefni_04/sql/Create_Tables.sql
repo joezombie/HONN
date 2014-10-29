@@ -74,6 +74,12 @@ INSERT INTO [hshjohannesh10].[ru_users]
 	 SELECT 'tbickle', 'Travis' ,'Bickle' ,'tbickle' ,'travis@taxi.com' ,getdate()
 	 UNION ALL
 	 SELECT 'dmorales', 'Daniel' ,' Morales' ,'dmorales' ,'dmorales@taxi.fr' ,getdate()
+	 UNION ALL
+	 SELECT 'jdoe', 'John' ,' Doe' ,'jdoe' ,'jdoe@ruber.is' ,getdate()
+	 UNION ALL
+	 SELECT 'jblack', 'Jack' ,' Black' ,'jblack' ,'jblack@ruber.is' ,getdate()
+	 UNION ALL
+	 SELECT 'bcarpenter', 'Bob' ,' Carpenter' ,'bcarpenter' ,'bcarpenter@ruber.is' ,getdate()
 
 GO
 
@@ -95,6 +101,15 @@ INSERT INTO [hshjohannesh10].[ru_products]
            ('A fast ride', 'The white Peugeot', 4, '/assets/images/peugeot_white.jpg')
 GO
 
+INSERT INTO [hshjohannesh10].[ru_products]
+           ([description]
+		   ,[displayName]
+		   ,[capacity]
+		   ,[image])
+     VALUES
+           ('The standard Orange', 'Orange beetle', 4, '/assets/images/beetle_orange.jpg')
+GO
+
 INSERT INTO [hshjohannesh10].[ru_drivers]
            ([userId]
 		   ,[productId]
@@ -111,13 +126,54 @@ INSERT INTO [hshjohannesh10].[ru_drivers]
            (3, 2, 'Daniel Morales')
 GO
 
+INSERT INTO [hshjohannesh10].[ru_drivers]
+           ([userId]
+		   ,[productId]
+		   ,[fullName])
+     VALUES
+           (4, 3, 'John Doe')
+GO
+
+INSERT INTO [hshjohannesh10].[ru_drivers]
+           ([userId]
+		   ,[productId]
+		   ,[fullName])
+     VALUES
+           (5, 3, 'Jack Black')
+GO
+
+INSERT INTO [hshjohannesh10].[ru_drivers]
+           ([userId]
+		   ,[productId]
+		   ,[fullName])
+     VALUES
+           (6, 3, 'Bob Carpenter')
+GO
+
 INSERT INTO [hshjohannesh10].[ru_driver_ratings]
            ([riderId]
            ,[driverId]
            ,[rating]
            ,[comment])
-     VALUES (1, 1, 5, 'The car was nice but the driver seemed a bit unstable')
+     VALUES (1, 1, 4, 'The car was nice but the driver seemed a bit unstable')
 GO
+
+INSERT INTO [hshjohannesh10].[ru_driver_ratings]
+           ([riderId]
+           ,[driverId]
+           ,[rating]
+           ,[comment])
+     VALUES (1, 1, 5, 'Awesome ride')
+GO
+
+INSERT INTO [hshjohannesh10].[ru_driver_ratings]
+           ([riderId]
+           ,[driverId]
+           ,[rating]
+           ,[comment])
+     VALUES (1, 1, 3, 'I did not like the driver')
+GO
+
 
 select * from [hshjohannesh10].[hshjohannesh10].[ru_users]
 select * from [hshjohannesh10].[hshjohannesh10].[ru_drivers]
